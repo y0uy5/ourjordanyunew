@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>منصة أردننا الطلابية | جامعة اليرموك</title>
+  <title>منصة أردننا الأكاديمية | جامعة اليرموك</title>
 
   <!-- الخطوط والأيقونات -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,17 +13,23 @@
 
   <style>
     :root {
-      --primary-navy: #091322;
-      --navy-card: #0f1d32;
-      --accent-red: #e11d48;
-      --accent-red-glow: rgba(225, 29, 72, 0.35);
-      --accent-amber: #f59e0b;
-      --text-white: #f8fafc;
+      /* الألوان الرسمية للكتلة بتدرجات مؤسسية */
+      --bg-dark: #040914;
+      --bg-panel: #0a1120;
+      --bg-card: #0f182b;
+      --border-color: #1e293b;
+      --border-hover: #334155;
+      
+      --primary-red: #c52222;
+      --primary-red-hover: #9f1818;
+      --accent-gold: #d97706;
+      
+      --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --glass-bg: rgba(15, 29, 50, 0.65);
-      --glass-border: rgba(255, 255, 255, 0.08);
-      --glass-hover: rgba(255, 255, 255, 0.12);
-      --radius: 16px;
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
     }
 
     * {
@@ -34,533 +40,607 @@
     }
 
     body {
-      background-color: var(--primary-navy);
-      color: var(--text-white);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       line-height: 1.7;
       min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
+      /* خلفية شبكية دقيقة تعطي تفاصيل تقنية رسمية */
+      background-image: 
+        linear-gradient(rgba(30, 41, 59, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
+      background-size: 30px 30px;
+      background-position: center top;
     }
 
-    /* خلفية متدرجة متحركة ناعمة تعطي روحاً للموقع */
-    .ambient-glow {
-      position: absolute;
-      width: 480px;
-      height: 480px;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.35;
-      animation: floatAround 14s infinite alternate ease-in-out;
-    }
-
-    .glow-1 {
-      top: -100px;
-      right: -80px;
-      background: radial-gradient(circle, var(--accent-red), transparent 70%);
-    }
-
-    .glow-2 {
-      top: 30%;
-      left: -120px;
-      background: radial-gradient(circle, #2563eb, transparent 70%);
-      animation-delay: -5s;
-    }
-
-    @keyframes floatAround {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(40px, 60px) scale(1.1); }
-      100% { transform: translate(-30px, 30px) scale(0.95); }
-    }
-
-    /* الناف بار الزجاجي المعلق (Floating Glass Nav) */
-    .navbar-wrapper {
+    /* شريط التنقل المؤسسي (Enterprise Navbar) */
+    .site-header {
+      background: rgba(10, 17, 32, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
       position: sticky;
-      top: 18px;
-      z-index: 100;
-      padding: 0 1.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
+      top: 0;
+      z-index: 1000;
     }
 
-    .glass-nav {
-      background: rgba(15, 29, 50, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--glass-border);
-      border-radius: 50px;
-      padding: 0.6rem 1.4rem;
+    .top-bar {
+      background: var(--primary-red);
+      height: 4px;
+      width: 100%;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.8rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
     }
 
-    .nav-brand {
+    .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-decoration: none;
     }
 
-    .nav-brand img {
-      height: 36px;
+    .brand img {
+      height: 40px;
       width: auto;
     }
 
-    .brand-meta h2 {
-      font-size: 1.1rem;
-      font-weight: 800;
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .brand-meta h1 {
+      font-size: 1.2rem;
+      font-weight: 900;
       color: #ffffff;
-      line-height: 1.2;
+      line-height: 1.1;
+      letter-spacing: 0.5px;
     }
 
     .brand-meta span {
-      font-size: 0.72rem;
-      color: var(--accent-amber);
+      font-size: 0.75rem;
+      color: var(--accent-gold);
       font-weight: 700;
+      margin-top: 2px;
     }
 
-    /* أزرار التبديل العصرية */
-    .nav-tabs-pill {
+    /* نظام التابات بخطوط سفلية (Underline Tabs) */
+    .nav-tabs {
       display: flex;
-      gap: 6px;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 4px;
-      border-radius: 40px;
+      gap: 1.5rem;
     }
 
-    .tab-pill {
+    .tab-btn {
       background: transparent;
       border: none;
       color: var(--text-muted);
+      font-size: 0.95rem;
       font-weight: 700;
-      font-size: 0.88rem;
-      padding: 7px 18px;
-      border-radius: 30px;
+      padding: 0.5rem 0;
       cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .tab-pill:hover {
-      color: #ffffff;
-    }
-
-    .tab-pill.active {
-      background: var(--accent-red);
-      color: #ffffff;
-      box-shadow: 0 4px 15px var(--accent-red-glow);
-    }
-
-    /* قسم الهيرو التفاعلي */
-    .hero {
       position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 4.5rem auto 3rem;
+      transition: color 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: #ffffff;
+    }
+
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: var(--primary-red);
+      transition: width 0.3s ease;
+      border-radius: 3px 3px 0 0;
+    }
+
+    .tab-btn.active {
+      color: #ffffff;
+    }
+
+    .tab-btn.active::after {
+      width: 100%;
+    }
+
+    /* قسم الهيرو الرسمي */
+    .hero {
+      max-width: 1000px;
+      margin: 4rem auto 3rem;
       padding: 0 1.5rem;
       text-align: center;
     }
 
-    .badge-modern {
+    .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(225, 29, 72, 0.12);
-      color: #fda4af;
-      border: 1px solid rgba(225, 29, 72, 0.3);
-      padding: 6px 20px;
-      border-radius: 50px;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 6px 16px;
+      border-radius: var(--radius-sm);
       font-size: 0.85rem;
-      font-weight: 800;
+      font-weight: 700;
       margin-bottom: 1.5rem;
-      animation: pulseBadge 2.5s infinite;
+      letter-spacing: 0.5px;
     }
 
-    @keyframes pulseBadge {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.4); }
-      50% { box-shadow: 0 0 0 8px rgba(225, 29, 72, 0); }
+    .hero-badge i {
+      color: var(--accent-gold);
     }
 
     .hero-title {
-      font-size: 3.2rem;
+      font-size: 3rem;
       font-weight: 900;
-      letter-spacing: -1px;
-      line-height: 1.25;
-      margin-bottom: 1.2rem;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-bottom: 1rem;
     }
 
-    .gradient-text {
-      background: linear-gradient(135deg, #ffffff 30%, #fda4af 70%, var(--accent-red) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .hero-title span {
+      color: var(--primary-red);
     }
 
     .hero-desc {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
-      max-width: 680px;
+      max-width: 700px;
       margin: 0 auto 2.5rem;
+      line-height: 1.8;
     }
 
-    .hero-buttons {
+    /* الأزرار المؤسسية */
+    .btn-group {
       display: flex;
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
     }
 
-    .btn-glow {
-      background: linear-gradient(135deg, var(--accent-red), #be123c);
+    .btn-primary {
+      background: var(--primary-red);
       color: #ffffff;
-      border: none;
+      border: 1px solid var(--primary-red);
       padding: 12px 28px;
-      border-radius: 12px;
+      border-radius: var(--radius-sm);
       font-size: 1rem;
       font-weight: 800;
       cursor: pointer;
-      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 10px 25px var(--accent-red-glow);
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
     }
 
-    .btn-glow:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 15px 35px var(--accent-red-glow);
+    .btn-primary:hover {
+      background: var(--primary-red-hover);
+      border-color: var(--primary-red-hover);
     }
 
-    .btn-glass {
-      background: rgba(255, 255, 255, 0.05);
-      color: #ffffff;
-      border: 1px solid var(--glass-border);
-      padding: 12px 26px;
-      border-radius: 12px;
+    .btn-secondary {
+      background: var(--bg-panel);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 12px 28px;
+      border-radius: var(--radius-sm);
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-      text-decoration: none;
-      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
     }
 
-    .btn-glass:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-3px);
+    .btn-secondary:hover {
+      background: var(--bg-card);
+      border-color: var(--border-hover);
     }
 
-    /* منطقة المحتوى التفاعلي */
-    .content-viewport {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto 6rem;
+    /* منطقة عرض التابات */
+    .main-viewport {
+      max-width: 1200px;
+      margin: 0 auto 5rem;
       padding: 0 1.5rem;
-      min-height: 45vh;
+      min-height: 40vh;
     }
 
     .tab-section {
       display: none;
-      animation: modernFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: fadeUp 0.3s ease forwards;
     }
 
     .tab-section.active {
       display: block;
     }
 
-    @keyframes modernFade {
-      from { opacity: 0; transform: translateY(16px); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* شبكة الكروت التفاعلية ثلاثية الأبعاد خفيفة */
-    .cards-grid {
+    /* شبكة الكروت (Bento Box / Dashboard Style) */
+    .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
     }
 
-    .glass-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius);
-      padding: 2rem;
+    .dashboard-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.8rem;
+      transition: all 0.2s ease;
       position: relative;
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .glass-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--glass-hover);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    /* خط علوي دقيق لإعطاء طابع رسمي لكل كرت */
+    .dashboard-card::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 1.5rem;
+      right: 1.5rem;
+      height: 2px;
+      background: var(--border-hover);
+      transition: background 0.3s ease;
     }
 
-    .card-top-icon {
-      width: 52px;
-      height: 52px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
+    .dashboard-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card);
+    }
+
+    .dashboard-card:hover::before {
+      background: var(--primary-red);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .icon-square {
+      width: 42px;
+      height: 42px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 1.4rem;
-      color: #fda4af;
-      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      color: var(--text-main);
     }
 
-    .glass-card:hover .card-top-icon {
-      background: var(--accent-red);
-      color: #ffffff;
-      box-shadow: 0 8px 20px var(--accent-red-glow);
-    }
-
-    .glass-card h3 {
-      font-size: 1.3rem;
+    .card-header h3 {
+      font-size: 1.15rem;
       font-weight: 800;
-      margin-bottom: 0.6rem;
       color: #ffffff;
     }
 
-    .glass-card p {
+    .dashboard-card p {
       color: var(--text-muted);
       font-size: 0.95rem;
       line-height: 1.6;
     }
 
-    /* كروت الكليات في بنك المواد */
+    /* كروت الكليات (بنك المواد) */
     .faculty-item {
       cursor: pointer;
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
-      min-height: 200px;
+      align-items: center;
     }
 
-    .faculty-indicator {
+    .faculty-info {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-top: 1.5rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--glass-border);
+      gap: 15px;
+    }
+
+    .faculty-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(197, 34, 34, 0.1);
+      color: var(--primary-red);
+      border: 1px solid rgba(197, 34, 34, 0.2);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .faculty-details h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .faculty-details p {
       font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--accent-red);
+      color: var(--text-muted);
     }
 
-    /* استمارة الانتساب الحديثة */
-    .form-box {
-      max-width: 540px;
-      margin: 1rem auto 0;
-      background: var(--glass-bg);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
+    .faculty-arrow {
+      color: var(--border-hover);
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .faculty-item:hover .faculty-arrow {
+      color: var(--accent-gold);
+      transform: translateX(-5px);
+    }
+
+    /* نموذج إدخال البيانات الرسمي */
+    .form-panel {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
       padding: 2.5rem;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
     }
 
-    .form-field {
+    .form-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .form-header h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .form-header p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .input-group {
       margin-bottom: 1.2rem;
     }
 
-    .form-field label {
+    .input-group label {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 700;
+      color: var(--text-main);
       margin-bottom: 8px;
-      color: #cbd5e1;
     }
 
-    .form-input {
+    .input-control {
       width: 100%;
-      background: rgba(9, 19, 34, 0.7);
-      border: 1px solid var(--glass-border);
-      border-radius: 10px;
-      padding: 12px 16px;
+      background: var(--bg-dark);
+      border: 1px solid var(--border-color);
       color: #ffffff;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
       font-size: 0.95rem;
       outline: none;
-      transition: all 0.2s ease;
+      transition: border-color 0.2s ease;
     }
 
-    .form-input:focus {
-      border-color: var(--accent-red);
-      box-shadow: 0 0 0 3px var(--accent-red-glow);
+    .input-control:focus {
+      border-color: var(--primary-red);
     }
 
-    /* الفوتر العصري وحقوق التطوير */
+    .input-control::placeholder {
+      color: #475569;
+    }
+
+    /* الفوتر */
     footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--glass-border);
-      background: rgba(9, 19, 34, 0.85);
-      backdrop-filter: blur(10px);
-      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-panel);
+      padding: 2.5rem 1.5rem;
       text-align: center;
     }
 
-    .devs-container {
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 1rem;
+      gap: 15px;
     }
 
-    .dev-chip {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--glass-border);
-      color: #cbd5e1;
+    .footer-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .dev-credits {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .dev-link {
+      background: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
       padding: 6px 14px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-size: 0.88rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
       font-weight: 700;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       transition: all 0.2s ease;
     }
 
-    .dev-chip:hover {
-      background: rgba(225, 29, 72, 0.15);
-      border-color: var(--accent-red);
-      color: #ffffff;
-      transform: translateY(-2px);
+    .dev-link:hover {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
     }
 
     @media (max-width: 768px) {
+      .header-inner { flex-direction: column; gap: 1rem; }
+      .nav-tabs { width: 100%; justify-content: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0px; }
       .hero-title { font-size: 2.2rem; }
-      .glass-nav { flex-direction: column; gap: 12px; border-radius: 20px; }
-      .nav-tabs-pill { width: 100%; justify-content: center; }
+      .form-panel { padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- التوهجات المحيطية الناعمة -->
-  <div class="ambient-glow glow-1"></div>
-  <div class="ambient-glow glow-2"></div>
-
-  <!-- الناف بار الزجاجي العائم -->
-  <div class="navbar-wrapper">
-    <nav class="glass-nav">
-      <a href="#" class="nav-brand">
-        <img src="logewhite.png" alt="شعار الكتلة" onerror="this.src='logewhite.png'">
+  <!-- شريط التنقل العلوي -->
+  <header class="site-header">
+    <div class="top-bar"></div>
+    <div class="header-inner">
+      <a href="#" class="brand">
+        <img src="whitelogo.png" alt="كتلة أردننا" onerror="this.src='fulllogo.png'">
         <div class="brand-meta">
-          <h2>كتلة أردننا</h2>
+          <h1>كتلة أردننا</h1>
           <span>جامعة اليرموك</span>
         </div>
       </a>
 
-      <div class="nav-tabs-pill">
-        <button class="tab-pill active" onclick="navigate('tab-home', this)">الرئيسية</button>
-        <button class="tab-pill" onclick="navigate('tab-materials', this)">بنك المواد</button>
-        <button class="tab-pill" onclick="navigate('tab-apply', this)">طلب الانتساب</button>
-      </div>
-    </nav>
-  </div>
-
-  <!-- قسم الهيرو الرئيسي -->
-  <header class="hero">
-    <div class="badge-modern">
-      <i class="fa-solid fa-bolt"></i> المنصة الجامعية المتطورة
-    </div>
-    <h1 class="hero-title">
-      مرحباً بكم في بوابة <br />
-      <span class="gradient-text">كتلة أردننا الأكاديمية</span>
-    </h1>
-    <p class="hero-desc">
-      بيئة طلابية ذكية وموحدة تجمع لك شروحات المساقات، مراجع المواد المعتمدة، والخطط الشجرية لجميع كليات جامعة اليرموك.
-    </p>
-    <div class="hero-buttons">
-      <button class="btn-glow" onclick="document.querySelector('[onclick*=\'tab-materials\']').click()">
-        <i class="fa-solid fa-layer-group"></i> تصفح بنك المواد
-      </button>
-      <button class="btn-glass" onclick="document.querySelector('[onclick*=\'tab-apply\']').click()">
-        انضم للكتلة
-      </button>
+      <!-- تابات التصفح السفلية (Underline Tabs) -->
+      <nav class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('tab-overview', this)">الرئيسية</button>
+        <button class="tab-btn" onclick="switchTab('tab-academic', this)">بنك المواد</button>
+        <button class="tab-btn" onclick="switchTab('tab-register', this)">طلب الانتساب</button>
+      </nav>
     </div>
   </header>
 
-  <!-- مساحة التابات المتغيرة -->
-  <main class="content-viewport">
+  <!-- قسم الهيرو الرسمي -->
+  <section class="hero">
+    <div class="hero-badge">
+      <i class="fa-solid fa-building-columns"></i> المنصة الجامعية المعتمدة
+    </div>
+    <h2 class="hero-title">
+      البوابة الأكاديمية المركزية <br />
+      لطلبة <span>جامعة اليرموك</span>
+    </h2>
+    <p class="hero-desc">
+      بيئة طلابية مؤسسية تجمع لك المراجع المعتمدة، الخطط الشجرية، وشروحات المساقات بطريقة منظمة وموثوقة لجميع الكليات.
+    </p>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="document.querySelector('[onclick*=\'tab-academic\']').click()">
+        <i class="fa-solid fa-folder-tree"></i> تصفح الكليات
+      </button>
+      <button class="btn-secondary" onclick="document.querySelector('[onclick*=\'tab-register\']').click()">
+        <i class="fa-solid fa-file-signature"></i> تقديم طلب انتساب
+      </button>
+    </div>
+  </section>
 
-    <!-- 1. واجهة الرئيسية -->
-    <section id="tab-home" class="tab-section active">
-      <div class="cards-grid">
-        <div class="glass-card">
-          <div class="card-top-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-          <h3>مستودع الكليات</h3>
-          <p>أرشيف تفاعلي مرتب بدقة هرمية: اختر كليتك ثم تخصصك للوصول إلى كافة متطلباتك بضغطة زر واحدة.</p>
+  <!-- منطقة عرض المحتوى -->
+  <main class="main-viewport">
+
+    <!-- 1. تبويب الرئيسية (نظرة عامة) -->
+    <section id="tab-overview" class="tab-section active">
+      <div style="margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 900; color: #ffffff;">نظرة عامة على الخدمات</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">أدوات متكاملة لدعم مسيرتك الأكاديمية</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="icon-square"><i class="fa-solid fa-server"></i></div>
+            <h3>مستودع الكليات</h3>
+          </div>
+          <p>أرشيف تفاعلي مرتب بدقة هرمية: اختر كليتك ثم تخصصك للوصول إلى كافة المراجع والملخصات بسهولة تامة.</p>
         </div>
 
-        <div class="glass-card">
-          <div class="card-top-icon" style="color: var(--accent-amber);"><i class="fa-solid fa-users-viewfinder"></i></div>
-          <h3>اللجان الأكاديمية</h3>
-          <p>كوادر طلابية متميزة في كل كلية مكرسة لإرشادكم ومتابعة كل ما يلزمكم في المواد الدراسية.</p>
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="icon-square"><i class="fa-solid fa-sitemap"></i></div>
+            <h3>الخطط الشجرية</h3>
+          </div>
+          <p>استعراض واضح لتسلسل المواد الدراسية والمتطلبات السابقة لكل تخصص لضمان تسجيل صحيح للفصول.</p>
         </div>
 
-        <div class="glass-card">
-          <div class="card-top-icon" style="color: #60a5fa;"><i class="fa-solid fa-cloud-arrow-down"></i></div>
-          <h3>وصول فوري ومجاني</h3>
-          <p>تحميل مباشر وسريع للملفات والملخصات والخطط الدراسية دون اشتراكات أو تعقيدات.</p>
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="icon-square"><i class="fa-solid fa-users-gear"></i></div>
+            <h3>اللجان التنسيقية</h3>
+          </div>
+          <p>كوادر طلابية متخصصة وموزعة على كافة الكليات لتقديم الإرشاد الأكاديمي ومتابعة قضايا الطلبة.</p>
         </div>
       </div>
     </section>
 
-    <!-- 2. واجهة بنك المواد (جلب الكليات ديناميكياً من Firebase) -->
-    <section id="tab-materials" class="tab-section">
-      <div style="text-align: center; margin-bottom: 2rem;">
-        <h2 style="font-size: 1.8rem; font-weight: 800;">اختر الكلية</h2>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">تصفح كليات جامعة اليرموك لاستعراض المواد المتاحة</p>
+    <!-- 2. تبويب بنك المواد -->
+    <section id="tab-academic" class="tab-section">
+      <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h3 style="font-size: 1.4rem; font-weight: 900; color: #ffffff;">بنك المواد الجامعية</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">اختر كليتك لاستعراض التخصصات والمقررات</p>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-muted); background: var(--bg-panel); padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+          <i class="fa-solid fa-circle-info" style="color: var(--accent-gold); margin-left: 5px;"></i> يتم تحديث المحتوى دورياً
+        </div>
       </div>
 
-      <div id="faculties-grid" class="cards-grid">
-        <div class="glass-card" style="text-align: center; grid-column: 1 / -1;">
-          <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color: var(--accent-red); margin-bottom: 12px;"></i>
-          <p style="color: var(--text-muted);">جاري تحميل الكليات من قاعدة البيانات...</p>
+      <div id="faculties-grid" class="features-grid">
+        <div class="dashboard-card" style="text-align: center; grid-column: 1 / -1; padding: 3rem;">
+          <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color: var(--text-muted); margin-bottom: 15px;"></i>
+          <p style="color: var(--text-muted);">جاري الاتصال بقاعدة البيانات واستدعاء الكليات...</p>
         </div>
       </div>
     </section>
 
-    <!-- 3. واجهة طلب الانتساب -->
-    <section id="tab-apply" class="tab-section">
-      <div class="form-box">
-        <div style="text-align: center; margin-bottom: 1.8rem;">
-          <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 6px;">طلب انتساب لكتلة أردننا</h2>
-          <p style="color: var(--text-muted); font-size: 0.88rem;">كن شريكاً في تمثيل الطلبة وصناعة التغيير في كليتك</p>
+    <!-- 3. تبويب طلب الانتساب -->
+    <section id="tab-register" class="tab-section">
+      <div class="form-panel">
+        <div class="form-header">
+          <h2>الانتساب للجان العاملة</h2>
+          <p>يرجى تعبئة البيانات بدقة للتواصل معك من قبل منسق الكلية المعنية.</p>
         </div>
 
-        <form id="joinBlocForm" onsubmit="handleJoinSubmit(event)">
-          <div class="form-field">
-            <label>الاسم الرباعي</label>
-            <input type="text" class="form-input" id="applicantName" required placeholder="أدخل اسمك الكامل">
+        <form id="joinForm" onsubmit="submitApplication(event)">
+          <div class="input-group">
+            <label>الاسم الرباعي <span style="color: var(--primary-red);">*</span></label>
+            <input type="text" class="input-control" required placeholder="أدخل اسمك كما في الهوية الجامعية">
           </div>
-          <div class="form-field">
-            <label>الرقم الجامعي</label>
-            <input type="number" class="form-input" id="applicantId" required placeholder="202XXXXXXX">
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="input-group">
+              <label>الرقم الجامعي <span style="color: var(--primary-red);">*</span></label>
+              <input type="number" class="input-control" required placeholder="مثال: 2024010101">
+            </div>
+            <div class="input-group">
+              <label>رقم الهاتف <span style="color: var(--primary-red);">*</span></label>
+              <input type="tel" class="input-control" required placeholder="07XXXXXXXX">
+            </div>
           </div>
-          <div class="form-field">
-            <label>الكلية والتخصص</label>
-            <input type="text" class="form-input" id="applicantMajor" required placeholder="مثال: الإعلام - إذاعة وتلفزيون">
+
+          <div class="input-group">
+            <label>الكلية والتخصص <span style="color: var(--primary-red);">*</span></label>
+            <input type="text" class="input-control" required placeholder="مثال: كلية الحجاوي - هندسة النظم الذكية">
           </div>
-          <div class="form-field">
-            <label>رقم الهاتف / واتساب</label>
-            <input type="tel" class="form-input" id="applicantPhone" required placeholder="07XXXXXXXX">
-          </div>
-          <button type="submit" class="btn-glow" style="width: 100%; justify-content: center; margin-top: 1rem;">
-            إرسال طلب الانضمام
+
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">
+            إرسال الطلب للاعتماد
           </button>
         </form>
       </div>
@@ -568,31 +648,31 @@
 
   </main>
 
-  <!-- الفوتر وحقوق التطوير -->
+  <!-- الفوتر الرسمي -->
   <footer>
-    <p style="font-size: 0.9rem; color: var(--text-muted); font-weight: 600;">
-      © 2026 كتلة أردننا - جامعة اليرموك | صوت الطالب وشريك البناء
-    </p>
+    <div class="footer-content">
+      <div class="footer-text">
+        © 2026 كتلة أردننا - جامعة اليرموك | جميع الحقوق محفوظة
+      </div>
 
-    <div class="devs-container">
-      <span style="font-size: 0.85rem; color: var(--text-muted);">تصميم وتطوير (Built by):</span>
-
-      <a href="mailto:arabiatyousef66@gmail.com" class="dev-chip" title="arabiatyousef66@gmail.com">
-        <i class="fa-solid fa-code"></i> Yousef Arabiat
-      </a>
-
-      <a href="mailto:engomaralomari6@gmail.com" class="dev-chip" title="engomaralomari6@gmail.com">
-        <i class="fa-solid fa-code"></i> Omar Alomari
-      </a>
+      <div class="dev-credits">
+        <span style="font-size: 0.85rem; color: #64748b;">تصميم وتطوير (Built by):</span>
+        <a href="mailto:arabiatyousef66@gmail.com" class="dev-link" title="arabiatyousef66@gmail.com">
+          <i class="fa-solid fa-laptop-code"></i> Yousef Arabiat
+        </a>
+        <a href="mailto:engomaralomari6@gmail.com" class="dev-link" title="engomaralomari6@gmail.com">
+          <i class="fa-solid fa-laptop-code"></i> Omar Alomari
+        </a>
+      </div>
     </div>
   </footer>
 
-  <!-- مكتبات Firebase -->
+  <!-- مكتبات فايربيس -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // إعدادات فايربيس
+    // تهيئة فايربيس
     const firebaseConfig = {
       apiKey: "AIzaSyBVMyWsdxknQvNyycyxJXVc5Yr4vLIdjo8",
       authDomain: "yu-media-books.firebaseapp.com",
@@ -605,26 +685,26 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // التبديل السلس بين التابات
-    function navigate(tabId, btn) {
-      document.querySelectorAll('.tab-section').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.tab-pill').forEach(p => p.classList.remove('active'));
+    // دالة تبديل التابات
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-section').forEach(section => section.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(button => button.classList.remove('active'));
 
       document.getElementById(tabId).classList.add('active');
       btn.classList.add('active');
 
-      if (tabId === 'tab-materials') {
+      if (tabId === 'tab-academic') {
         fetchFaculties();
       }
     }
 
-    // جلب الكليات من Firestore وعرضها بنمط Glassmorphism
+    // جلب بيانات الكليات من Firebase
     async function fetchFaculties() {
       const container = document.getElementById('faculties-grid');
       container.innerHTML = `
-        <div class="glass-card" style="text-align: center; grid-column: 1 / -1;">
-          <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color: var(--accent-red); margin-bottom: 12px;"></i>
-          <p style="color: var(--text-muted);">جاري استدعاء الكليات...</p>
+        <div class="dashboard-card" style="text-align: center; grid-column: 1 / -1; padding: 3rem;">
+          <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color: var(--text-muted); margin-bottom: 15px;"></i>
+          <p style="color: var(--text-muted);">جاري الاتصال بقاعدة البيانات...</p>
         </div>
       `;
 
@@ -633,8 +713,8 @@
 
         if (snapshot.empty) {
           container.innerHTML = `
-            <div class="glass-card" style="text-align: center; grid-column: 1 / -1;">
-              <p style="color: var(--text-muted);">لا توجد كليات مدرجة حتى الآن، سيتم إدراجها قريباً من لوحة الإدارة.</p>
+            <div class="dashboard-card" style="text-align: center; grid-column: 1 / -1;">
+              <p style="color: var(--text-muted);">لم يتم إدراج كليات في النظام بعد.</p>
             </div>
           `;
           return;
@@ -642,43 +722,46 @@
 
         let html = '';
         snapshot.forEach(doc => {
-          const item = doc.data();
+          const data = doc.data();
           html += `
-            <div class="glass-card faculty-item" onclick="openFaculty('${doc.id}', '${item.name}')">
-              <div>
-                <div class="card-top-icon">
-                  <i class="${item.icon || 'fa-solid fa-building-columns'}"></i>
+            <div class="dashboard-card faculty-item" onclick="viewMajors('${doc.id}', '${data.name}')">
+              <div class="faculty-info">
+                <div class="faculty-icon">
+                  <i class="${data.icon || 'fa-solid fa-building-columns'}"></i>
                 </div>
-                <h3>${item.name}</h3>
-                <p>استعراض التخصصات والمقررات والمراجع المعتمدة</p>
+                <div class="faculty-details">
+                  <h3>${data.name}</h3>
+                  <p>استعراض الخطط والمقررات</p>
+                </div>
               </div>
-              <div class="faculty-indicator">
-                <span>تصفح المقررات</span>
-                <i class="fa-solid fa-arrow-left"></i>
+              <div class="faculty-arrow">
+                <i class="fa-solid fa-chevron-left"></i>
               </div>
             </div>
           `;
         });
 
         container.innerHTML = html;
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.error(error);
         container.innerHTML = `
-          <div class="glass-card" style="text-align: center; grid-column: 1 / -1; border-color: var(--accent-red);">
-            <p style="color: #fda4af;">تعذر الوصول إلى قاعدة البيانات. تأكد من قواعد الأمان (Rules) في فايربيس.</p>
+          <div class="dashboard-card" style="text-align: center; grid-column: 1 / -1; border-color: var(--primary-red);">
+            <p style="color: var(--text-muted);">تعذر تحميل البيانات. يرجى التحقق من الاتصال وقواعد الأمان.</p>
           </div>
         `;
       }
     }
 
-    function openFaculty(id, name) {
-      alert(`اخترت: ${name}. في الخطوة القادمة سيتم عرض التخصصات التابعة لها ديناميكياً.`);
+    // الانتقال لصفحة التخصصات
+    function viewMajors(id, name) {
+      alert(`سيتم فتح تخصصات (${name}) في الخطوة القادمة.`);
     }
 
-    function handleJoinSubmit(e) {
+    // تقديم الطلب
+    function submitApplication(e) {
       e.preventDefault();
-      alert("تم إرسال طلب الانتساب بنجاح!");
-      document.getElementById('joinBlocForm').reset();
+      alert("تم تسجيل طلبك بنجاح في النظام.");
+      document.getElementById('joinForm').reset();
     }
   </script>
 </body>
