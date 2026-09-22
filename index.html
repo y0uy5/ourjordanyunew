@@ -4,9 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>منصة أردننا الأكاديمية | جامعة اليرموك</title>
-<link rel="icon" type="image/png" href="favicon.ico.png" />
+
+  <!-- أيقونة تبويب المتصفح (Favicon) -->
+  <link rel="icon" type="image/png" href="favicon.ico.png" />
   <link rel="shortcut icon" type="image/png" href="favicon.ico.png" />
   <link rel="apple-touch-icon" href="favicon.ico.png" />
+
   <!-- الخطوط والأيقونات -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,23 +18,24 @@
 
   <style>
     :root {
-      /* الألوان الرسمية المستوحاة من الهوية البصرية المرفقة بالصور (الأزرق البترولي) */
+      /* الهوية البصرية والألوان كما طلبت بالضبط */
       --bg-dark: #0b2e42;   /* خلفية الموقع الأساسية الأغمق */
       --bg-panel: #113c54;  /* خلفية الألواح والناف بار */
-      --bg-card: #154c6a;   /* اللون الرسمي المطابق تماماً لخلفية الشعار وقالب الإعلانات */
+      --bg-card: #154c6a;   /* اللون الرسمي لشعار الكتلة */
+      
+      --primary-red: #c52222;       /* لون التفاعل الأساسي */
+      --primary-red-hover: #e02828;
+      
+      --accent-gold: #f59f00;       /* لون التمييز والأيقونات */
+      
+      --text-main: #ffffff;         /* أبيض للعناوين */
+      --text-muted: #a6c4d8;        /* رمادي مزرق للنصوص الفرعية */
+      
       --border-color: #1f6288;
       --border-hover: #2b84b5;
       
-      --primary-red: #c52222;
-      --primary-red-hover: #e02828;
-      --accent-gold: #f59f00;
-      
-      --text-main: #ffffff;
-      --text-muted: #a6c4d8; /* رمادي مزرق ليتناسق مع الخلفية البترولية */
-      
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 16px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
     }
 
     * {
@@ -46,15 +50,15 @@
       color: var(--text-main);
       line-height: 1.7;
       min-height: 100vh;
-      /* شبكة هندسية دقيقة بلون أزرق فاتح شفاف */
+      -webkit-font-smoothing: antialiased; /* حل مشكلة رعشة الخط */
+      -moz-osx-font-smoothing: grayscale;
       background-image: 
         linear-gradient(rgba(31, 98, 136, 0.25) 1px, transparent 1px),
         linear-gradient(90deg, rgba(31, 98, 136, 0.25) 1px, transparent 1px);
       background-size: 30px 30px;
-      background-position: center top;
     }
 
-    /* شريط التنقل المؤسسي */
+    /* ================= الناف بار ================= */
     .site-header {
       background: rgba(17, 60, 84, 0.95);
       backdrop-filter: blur(8px);
@@ -98,21 +102,18 @@
     }
 
     .brand-meta h1 {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 900;
-      color: #ffffff;
+      color: var(--text-main);
       line-height: 1.1;
-      letter-spacing: 0.5px;
     }
 
     .brand-meta span {
       font-size: 0.75rem;
       color: var(--accent-gold);
       font-weight: 700;
-      margin-top: 2px;
     }
 
-    /* نظام التابات بخطوط سفلية (Underline Tabs) */
     .nav-tabs {
       display: flex;
       gap: 1.5rem;
@@ -130,14 +131,12 @@
       transition: color 0.2s ease;
     }
 
-    .tab-btn:hover {
-      color: #ffffff;
-    }
+    .tab-btn:hover { color: var(--text-main); }
 
     .tab-btn::after {
       content: '';
       position: absolute;
-      bottom: -15px;
+      bottom: -16px;
       left: 0;
       width: 0%;
       height: 3px;
@@ -146,18 +145,13 @@
       border-radius: 3px 3px 0 0;
     }
 
-    .tab-btn.active {
-      color: #ffffff;
-    }
+    .tab-btn.active { color: var(--text-main); }
+    .tab-btn.active::after { width: 100%; }
 
-    .tab-btn.active::after {
-      width: 100%;
-    }
-
-    /* قسم الهيرو الرسمي */
+    /* ================= الهيرو ================= */
     .hero {
       max-width: 1000px;
-      margin: 4rem auto 3rem;
+      margin: 4.5rem auto 3.5rem;
       padding: 0 1.5rem;
       text-align: center;
     }
@@ -166,7 +160,6 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: transparent;
       color: var(--text-muted);
       border: 1px solid var(--border-color);
       padding: 6px 16px;
@@ -174,24 +167,18 @@
       font-size: 0.85rem;
       font-weight: 700;
       margin-bottom: 1.5rem;
-      letter-spacing: 0.5px;
     }
 
-    .hero-badge i {
-      color: var(--accent-gold);
-    }
+    .hero-badge i { color: var(--accent-gold); }
 
     .hero-title {
-      font-size: 3rem;
+      font-size: 3.2rem;
       font-weight: 900;
-      color: #ffffff;
       line-height: 1.3;
       margin-bottom: 1rem;
     }
 
-    .hero-title span {
-      color: var(--primary-red);
-    }
+    .hero-title span { color: var(--primary-red); }
 
     .hero-desc {
       font-size: 1.1rem;
@@ -201,7 +188,6 @@
       line-height: 1.8;
     }
 
-    /* الأزرار المؤسسية */
     .btn-group {
       display: flex;
       justify-content: center;
@@ -229,7 +215,7 @@
       border-color: var(--primary-red-hover);
     }
 
-    .btn-secondary {
+    .btn-outline {
       background: var(--bg-panel);
       color: var(--text-main);
       border: 1px solid var(--border-color);
@@ -244,12 +230,12 @@
       transition: all 0.2s ease;
     }
 
-    .btn-secondary:hover {
+    .btn-outline:hover {
       background: var(--bg-card);
       border-color: var(--border-hover);
     }
 
-    /* منطقة عرض التابات */
+    /* ================= المحتوى التفاعلي (التابات) ================= */
     .main-viewport {
       max-width: 1200px;
       margin: 0 auto 5rem;
@@ -262,21 +248,19 @@
       animation: fadeUp 0.3s ease forwards;
     }
 
-    .tab-section.active {
-      display: block;
-    }
+    .tab-section.active { display: block; }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* شبكة الكروت (Bento Box) */
-    .features-grid {
+    /* شبكة الكروت (Bento Grid) */
+    .bento-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.5rem;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
 
     .dashboard-card {
@@ -304,9 +288,7 @@
       background: var(--bg-card);
     }
 
-    .dashboard-card:hover::before {
-      background: var(--primary-red);
-    }
+    .dashboard-card:hover::before { background: var(--primary-red); }
 
     .card-header {
       display: flex;
@@ -325,22 +307,20 @@
       align-items: center;
       justify-content: center;
       font-size: 1.2rem;
-      color: var(--text-main);
+      color: var(--accent-gold);
     }
 
     .card-header h3 {
       font-size: 1.15rem;
       font-weight: 800;
-      color: #ffffff;
     }
 
     .dashboard-card p {
       color: var(--text-muted);
       font-size: 0.95rem;
-      line-height: 1.6;
     }
 
-    /* كروت الكليات (بنك المواد) */
+    /* بنك المواد - كروت الكليات */
     .faculty-item {
       cursor: pointer;
       display: flex;
@@ -367,21 +347,9 @@
       font-size: 1.3rem;
     }
 
-    .faculty-details h3 {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 4px;
-    }
-
-    .faculty-details p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
     .faculty-arrow {
       color: var(--border-hover);
-      transition: color 0.2s ease, transform 0.2s ease;
+      transition: all 0.2s ease;
     }
 
     .faculty-item:hover .faculty-arrow {
@@ -389,7 +357,7 @@
       transform: translateX(-5px);
     }
 
-    /* نموذج إدخال البيانات الرسمي */
+    /* نموذج الانتساب */
     .form-panel {
       max-width: 600px;
       margin: 0 auto;
@@ -399,33 +367,12 @@
       padding: 2.5rem;
     }
 
-    .form-header {
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .form-header h2 {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 6px;
-    }
-
-    .form-header p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .input-group {
-      margin-bottom: 1.2rem;
-    }
+    .input-group { margin-bottom: 1.2rem; }
 
     .input-group label {
       display: block;
       font-size: 0.9rem;
       font-weight: 700;
-      color: var(--text-main);
       margin-bottom: 8px;
     }
 
@@ -433,7 +380,7 @@
       width: 100%;
       background: var(--bg-dark);
       border: 1px solid var(--border-color);
-      color: #ffffff;
+      color: var(--text-main);
       padding: 12px 14px;
       border-radius: var(--radius-sm);
       font-size: 0.95rem;
@@ -441,18 +388,11 @@
       transition: border-color 0.2s ease;
     }
 
-    .input-control:focus {
-      border-color: var(--primary-red);
-    }
+    .input-control:focus { border-color: var(--primary-red); }
 
-    .input-control::placeholder {
-      color: #7995a8;
-    }
-
-    /* الفوتر المؤسسي الكامل */
+    /* ================= الفوتر المؤسسي (4 أعمدة) ================= */
     footer {
-      background: #082231;
-      color: #94a3b8;
+      background: var(--bg-panel);
       padding: 3.5rem 1.5rem 2rem;
       border-top: 4px solid var(--primary-red);
       margin-top: 5rem;
@@ -460,14 +400,13 @@
 
     .footer-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2.5rem;
       max-width: 1200px;
       margin: 0 auto 2.5rem;
     }
 
     .footer-brand h3 {
-      color: #ffffff;
       font-size: 1.35rem;
       font-weight: 800;
       margin-bottom: 0.8rem;
@@ -475,7 +414,6 @@
 
     .footer-brand p {
       font-size: 0.95rem;
-      line-height: 1.7;
       color: var(--text-muted);
     }
 
@@ -490,7 +428,7 @@
       height: 40px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-color);
-      color: #ffffff;
+      color: var(--text-main);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -506,7 +444,6 @@
     }
 
     .footer-title {
-      color: #ffffff;
       font-size: 1.15rem;
       font-weight: 800;
       margin-bottom: 1.2rem;
@@ -525,28 +462,17 @@
       border-radius: 2px;
     }
 
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 10px;
-    }
-
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
+    
     .footer-links a {
       color: var(--text-muted);
       text-decoration: none;
       font-size: 0.92rem;
       transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    .footer-links a:hover {
-      color: var(--accent-gold);
-      transform: translateX(-4px);
-    }
+    .footer-links a:hover { color: var(--accent-gold); }
 
     .footer-info-item {
       font-size: 0.95rem;
@@ -559,26 +485,25 @@
 
     .footer-bottom {
       text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid var(--border-color);
       padding-top: 1.8rem;
       font-size: 0.9rem;
-      color: #64748b;
+      color: var(--text-muted);
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    .footer-bottom-credits {
-      margin-top: 10px;
+    .dev-credits {
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
       gap: 12px;
-      font-size: 0.88rem;
+      margin-top: 10px;
     }
 
     .dev-badge-clean {
-      color: var(--accent-gold);
+      color: #ffffff; /* أبيض كما طلبت مسبقاً */
       text-decoration: none;
       font-weight: 700;
       background: rgba(255, 255, 255, 0.04);
@@ -593,32 +518,30 @@
 
     .dev-badge-clean:hover {
       background: var(--accent-gold);
-      color: #0b2e42;
+      color: var(--bg-dark);
     }
 
     @media (max-width: 768px) {
       .header-inner { flex-direction: column; gap: 1rem; }
-      .nav-tabs { width: 100%; justify-content: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0px; }
+      .nav-tabs { width: 100%; justify-content: center; }
       .hero-title { font-size: 2.2rem; }
-      .form-panel { padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- شريط التنقل العلوي -->
+  <!-- ================= الناف بار ================= -->
   <header class="site-header">
     <div class="top-bar"></div>
     <div class="header-inner">
       <a href="#" class="brand">
-        <img src="logewhite.png" alt="كتلة أردننا" onerror="this.src='logewhite.png'">
+        <img src="whitelogo.png" alt="كتلة أردننا" onerror="this.src='favicon.ico.png'">
         <div class="brand-meta">
           <h1>كتلة أردننا</h1>
           <span>جامعة اليرموك</span>
         </div>
       </a>
 
-      <!-- تابات التصفح السفلية -->
       <nav class="nav-tabs">
         <button class="tab-btn active" onclick="switchTab('tab-overview', this)">الرئيسية</button>
         <button class="tab-btn" onclick="switchTab('tab-academic', this)">بنك المواد</button>
@@ -627,7 +550,7 @@
     </div>
   </header>
 
-  <!-- قسم الهيرو الرسمي -->
+  <!-- ================= قسم الهيرو ================= -->
   <section class="hero">
     <div class="hero-badge">
       <i class="fa-solid fa-building-columns"></i> المنصة الجامعية المعتمدة
@@ -643,23 +566,18 @@
       <button class="btn-primary" onclick="document.querySelector('[onclick*=\'tab-academic\']').click()">
         <i class="fa-solid fa-folder-tree"></i> تصفح الكليات
       </button>
-      <button class="btn-secondary" onclick="document.querySelector('[onclick*=\'tab-register\']').click()">
-        <i class="fa-solid fa-file-signature"></i> تقديم طلب انتساب
+      <button class="btn-outline" onclick="document.querySelector('[onclick*=\'tab-register\']').click()">
+        <i class="fa-solid fa-file-signature"></i> طلب انتساب
       </button>
     </div>
   </section>
 
-  <!-- منطقة عرض المحتوى -->
+  <!-- ================= الحاوية التفاعلية ================= -->
   <main class="main-viewport">
 
-    <!-- 1. تبويب الرئيسية -->
+    <!-- تاب 1: الرئيسية -->
     <section id="tab-overview" class="tab-section active">
-      <div style="margin-bottom: 1.5rem;">
-        <h3 style="font-size: 1.4rem; font-weight: 900; color: #ffffff;">نظرة عامة على الخدمات</h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">أدوات متكاملة لدعم مسيرتك الأكاديمية</p>
-      </div>
-
-      <div class="features-grid">
+      <div class="bento-grid">
         <div class="dashboard-card">
           <div class="card-header">
             <div class="icon-square"><i class="fa-solid fa-server"></i></div>
@@ -679,39 +597,31 @@
         <div class="dashboard-card">
           <div class="card-header">
             <div class="icon-square"><i class="fa-solid fa-users-gear"></i></div>
-            <h3>اللجان التنسيقية</h3>
+            <h3>اللجان الأكاديمية</h3>
           </div>
           <p>كوادر طلابية متخصصة وموزعة على كافة الكليات لتقديم الإرشاد الأكاديمي ومتابعة قضايا الطلبة.</p>
         </div>
       </div>
     </section>
 
-    <!-- 2. تبويب بنك المواد -->
+    <!-- تاب 2: بنك المواد -->
     <section id="tab-academic" class="tab-section">
-      <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
-        <div>
-          <h3 style="font-size: 1.4rem; font-weight: 900; color: #ffffff;">بنك المواد الجامعية</h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem;">اختر كليتك لاستعراض التخصصات والمقررات</p>
-        </div>
-        <div style="font-size: 0.85rem; color: var(--text-muted); background: var(--bg-panel); padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
-          <i class="fa-solid fa-circle-info" style="color: var(--accent-gold); margin-left: 5px;"></i> يتم تحديث المحتوى دورياً
-        </div>
+      <div style="margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.4rem; font-weight: 900;">بنك المواد الجامعية</h3>
+        <p style="color: var(--text-muted);">اختر كليتك لاستعراض التخصصات والمقررات</p>
       </div>
 
-      <div id="faculties-grid" class="features-grid">
-        <div class="dashboard-card" style="text-align: center; grid-column: 1 / -1; padding: 3rem;">
-          <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color: var(--text-muted); margin-bottom: 15px;"></i>
-          <p style="color: var(--text-muted);">جاري الاتصال بقاعدة البيانات واستدعاء الكليات...</p>
-        </div>
+      <div id="faculties-grid" class="bento-grid">
+        <!-- الكليات تُجلب ديناميكياً من Firebase -->
       </div>
     </section>
 
-    <!-- 3. تبويب طلب الانتساب -->
+    <!-- تاب 3: طلب الانتساب -->
     <section id="tab-register" class="tab-section">
       <div class="form-panel">
-        <div class="form-header">
-          <h2>الانتساب للجان العاملة</h2>
-          <p>يرجى تعبئة البيانات بدقة للتواصل معك من قبل منسق الكلية المعنية.</p>
+        <div style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+          <h2 style="font-size: 1.4rem; font-weight: 900; margin-bottom: 6px;">الانتساب للجان العاملة</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">يرجى تعبئة البيانات للتواصل معك من قبل منسق كليتك.</p>
         </div>
 
         <form id="joinForm" onsubmit="submitApplication(event)">
@@ -733,11 +643,11 @@
 
           <div class="input-group">
             <label>الكلية والتخصص <span style="color: var(--primary-red);">*</span></label>
-            <input type="text" class="input-control" required placeholder="مثال: كلية الحجاوي - هندسة النظم الذكية">
+            <input type="text" class="input-control" required placeholder="مثال: كلية الإعلام - إذاعة وتلفزيون">
           </div>
 
           <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">
-            إرسال الطلب للاعتماد
+            إرسال طلب الاعتماد
           </button>
         </form>
       </div>
@@ -745,73 +655,71 @@
 
   </main>
 
-<!-- الفوتر المؤسسي الشامل -->
+  <!-- ================= الفوتر ================= -->
   <footer>
     <div class="footer-grid">
       
-      <!-- العمود الأول: نبذة وحسابات السوشيال ميديا -->
+      <!-- العمود الأول: النبذة -->
       <div class="footer-brand">
         <h3>كتلة أردننا</h3>
-        <p>الكتلة الوطنية المعتمدة في جامعة اليرموك - صوت الطالب وشريك البناء في خدمة المسيرة الأكاديمية والنهوض بالعمل الطلابي والوطني.</p>
+        <p>صوت الطالب وشريك البناء في خدمة المسيرة الأكاديمية والنهوض بالعمل الطلابي والوطني.</p>
         <div class="social-icons">
-          <a href="https://www.instagram.com/our_jordan_yu/" target="_blank" class="social-btn" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
-          <a href="https://www.facebook.com/profile.php?id=61581737489708" target="_blank" class="social-btn" title="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
-         
+          <a href="https://www.instagram.com/our_jordan_yu/" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61581737489708" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://whatsapp.com/channel/0029VbDtR1YCXC3DUzNTHV2l" target="_blank" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
       </div>
 
-      <!-- العمود الثاني: روابط سريعة للخدمات داخل المنصة -->
+      <!-- العمود الثاني: الروابط السريعة -->
       <div>
         <h4 class="footer-title">بوابات المنصة</h4>
         <ul class="footer-links">
-          <li><a href="javascript:void(0)" onclick="switchTab('tab-overview', document.querySelectorAll('.tab-btn')[0])">الرئيسية ونظرة عامة</a></li>
-          <li><a href="javascript:void(0)" onclick="switchTab('tab-academic', document.querySelectorAll('.tab-btn')[1])">مستودع الكليات وبنك المواد</a></li>
-          <li><a href="javascript:void(0)" onclick="switchTab('tab-register', document.querySelectorAll('.tab-btn')[2])">طلب الانتساب للجان</a></li>
+          <li><a href="#" onclick="document.querySelectorAll('.tab-btn')[0].click()">الرئيسية ونظرة عامة</a></li>
+          <li><a href="#" onclick="document.querySelectorAll('.tab-btn')[1].click()">مستودع الكليات</a></li>
+          <li><a href="#" onclick="document.querySelectorAll('.tab-btn')[2].click()">طلب الانتساب</a></li>
+          <li><a href="https://y0uy5.github.io/ourjordanyu/" target="_blank">بوابة كلية الإعلام</a></li>
         </ul>
       </div>
 
-      <!-- العمود الثالث: بوابات جامعة اليرموك الرسمية -->
+      <!-- العمود الثالث: بوابات الجامعة -->
       <div>
-        <h4 class="footer-title">خدمات جامعة اليرموك</h4>
+        <h4 class="footer-title">خدمات اليرموك</h4>
         <ul class="footer-links">
-          <li><a href="https://sis.yu.edu.jo" target="_blank">نظام معلومات الطلبة (SIS)</a></li>
-          <li><a href="https://elearning.yu.edu.jo" target="_blank">نظام التعليم الإلكتروني (Moodle)</a></li>
-          <li><a href="https://teams.microsoft.com" target="_blank">مايكروسوفت تيمز (Teams)</a></li>
+          <li><a href="https://sis.yu.edu.jo" target="_blank">نظام الطلبة (SIS)</a></li>
+          <li><a href="https://elearning.yu.edu.jo" target="_blank">التعليم الإلكتروني</a></li>
+          <li><a href="https://portal.office.com" target="_blank">البريد الجامعي</a></li>
+          <li><a href="https://teams.microsoft.com" target="_blank">مايكروسوفت تيمز</a></li>
         </ul>
       </div>
 
-      <!-- العمود الرابع: بيانات الصرح والاعتماد -->
+      <!-- العمود الرابع: معلومات الصرح -->
       <div>
         <h4 class="footer-title">معلومات الصرح</h4>
         <p class="footer-info-item"><i class="fa-solid fa-building-columns" style="color: var(--accent-gold);"></i> جامعة اليرموك</p>
-        <p class="footer-info-item"><i class="fa-solid fa-location-dot" style="color: var(--primary-red);"></i> إربد - المملكة الأردنية الهاشمية</p>
-        <p class="footer-info-item"><i class="fa-solid fa-envelope-circle-check" style="color: var(--accent-gold);"></i> معتمدة من عمادة شؤون الطلبة</p>
-        <p class="footer-info-item"><i class="fa-solid fa-landmark-flag" style="color: #4ade80;"></i> تتبع لحزب الميثاق الوطني</p>
+        <p class="footer-info-item"><i class="fa-solid fa-location-dot" style="color: var(--primary-red);"></i> إربد - الأردن</p>
+        <p class="footer-info-item"><i class="fa-solid fa-envelope-circle-check" style="color: var(--accent-gold);"></i> عمادة شؤون الطلبة</p>
+        <p class="footer-info-item"><i class="fa-solid fa-landmark-flag" style="color: #4ade80;"></i> حزب الميثاق الوطني</p>
       </div>
 
     </div>
 
-    <!-- الشريط السفلي: الحقوق وتوثيق المطورين -->
     <div class="footer-bottom">
       <p>© 2026 كتلة أردننا - جامعة اليرموك | جميع الحقوق محفوظة</p>
       
-      <div class="footer-bottom-credits">
+      <div class="dev-credits">
         <span>تصميم وتطوير (Built by):</span>
-        
-        <a href="mailto:arabiatyousef66@gmail.com" class="dev-badge-clean" style="color: #ffffff;" title="arabiatyousef66@gmail.com">
-  <i class="fa-solid fa-laptop-code"></i> Yousef Arabiat
-</a>
-
-<span style="color: rgba(255, 255, 255, 0.15);">|</span>
-
-<a href="mailto:engomaralomari6@gmail.com" class="dev-badge-clean" style="color: #ffffff;" title="engomaralomari6@gmail.com">
-  <i class="fa-solid fa-laptop-code"></i> Omar Alomari
-</a>
+        <a href="mailto:arabiatyousef66@gmail.com" class="dev-badge-clean">
+          <i class="fa-solid fa-laptop-code"></i> Yousef Arabiat
+        </a>
+        <span style="color: rgba(255, 255, 255, 0.15);">|</span>
+        <a href="mailto:engomaralomari6@gmail.com" class="dev-badge-clean">
+          <i class="fa-solid fa-laptop-code"></i> Omar Alomari
+        </a>
       </div>
     </div>
   </footer>
 
-  <!-- مكتبات فايربيس -->
+  <!-- ================= سكربتات Firebase والمنطق ================= -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
@@ -870,9 +778,9 @@
                 <div class="faculty-icon">
                   <i class="${data.icon || 'fa-solid fa-building-columns'}"></i>
                 </div>
-                <div class="faculty-details">
-                  <h3>${data.name}</h3>
-                  <p>استعراض الخطط والمقررات</p>
+                <div>
+                  <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 4px;">${data.name}</h3>
+                  <p style="font-size: 0.85rem; color: var(--text-muted);">استعراض الخطط والمقررات</p>
                 </div>
               </div>
               <div class="faculty-arrow">
@@ -884,22 +792,21 @@
 
         container.innerHTML = html;
       } catch (error) {
-        console.error(error);
         container.innerHTML = `
           <div class="dashboard-card" style="text-align: center; grid-column: 1 / -1; border-color: var(--primary-red);">
-            <p style="color: var(--text-muted);">تعذر تحميل البيانات. يرجى التحقق من الاتصال وقواعد الأمان.</p>
+            <p style="color: var(--text-muted);">تعذر تحميل البيانات. يرجى التحقق من قواعد الأمان.</p>
           </div>
         `;
       }
     }
 
     function viewMajors(id, name) {
-      alert(`سيتم فتح تخصصات (${name}) في الخطوة القادمة.`);
+      alert(`سيتم فتح قائمة التخصصات لـ (${name}) في الخطوة القادمة للبرمجة.`);
     }
 
     function submitApplication(e) {
       e.preventDefault();
-      alert("تم تسجيل طلبك بنجاح في النظام.");
+      alert("تم تسجيل طلب الانتساب بنجاح في النظام.");
       document.getElementById('joinForm').reset();
     }
   </script>
