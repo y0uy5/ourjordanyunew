@@ -13,19 +13,19 @@
 
   <style>
     :root {
-      /* الألوان الرسمية للكتلة بتدرجات مؤسسية */
-      --bg-dark: #040914;
-      --bg-panel: #0a1120;
-      --bg-card: #0f182b;
-      --border-color: #1e293b;
-      --border-hover: #334155;
+      /* الألوان الرسمية المستوحاة من الهوية البصرية المرفقة بالصور (الأزرق البترولي) */
+      --bg-dark: #0b2e42;   /* خلفية الموقع الأساسية الأغمق */
+      --bg-panel: #113c54;  /* خلفية الألواح والناف بار */
+      --bg-card: #154c6a;   /* اللون الرسمي المطابق تماماً لخلفية الشعار وقالب الإعلانات */
+      --border-color: #1f6288;
+      --border-hover: #2b84b5;
       
       --primary-red: #c52222;
-      --primary-red-hover: #9f1818;
-      --accent-gold: #d97706;
+      --primary-red-hover: #e02828;
+      --accent-gold: #f59f00;
       
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --text-main: #ffffff;
+      --text-muted: #a6c4d8; /* رمادي مزرق ليتناسق مع الخلفية البترولية */
       
       --radius-sm: 6px;
       --radius-md: 10px;
@@ -44,17 +44,17 @@
       color: var(--text-main);
       line-height: 1.7;
       min-height: 100vh;
-      /* خلفية شبكية دقيقة تعطي تفاصيل تقنية رسمية */
+      /* شبكة هندسية دقيقة بلون أزرق فاتح شفاف */
       background-image: 
-        linear-gradient(rgba(30, 41, 59, 0.3) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
+        linear-gradient(rgba(31, 98, 136, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(31, 98, 136, 0.25) 1px, transparent 1px);
       background-size: 30px 30px;
       background-position: center top;
     }
 
-    /* شريط التنقل المؤسسي (Enterprise Navbar) */
+    /* شريط التنقل المؤسسي */
     .site-header {
-      background: rgba(10, 17, 32, 0.95);
+      background: rgba(17, 60, 84, 0.95);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border-color);
       position: sticky;
@@ -269,7 +269,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* شبكة الكروت (Bento Box / Dashboard Style) */
+    /* شبكة الكروت (Bento Box) */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -286,7 +286,6 @@
       position: relative;
     }
 
-    /* خط علوي دقيق لإعطاء طابع رسمي لكل كرت */
     .dashboard-card::before {
       content: '';
       position: absolute;
@@ -317,7 +316,7 @@
     .icon-square {
       width: 42px;
       height: 42px;
-      background: rgba(255,255,255,0.03);
+      background: rgba(255,255,255,0.05);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
       display: flex;
@@ -445,7 +444,7 @@
     }
 
     .input-control::placeholder {
-      color: #475569;
+      color: #7995a8;
     }
 
     /* الفوتر */
@@ -521,7 +520,7 @@
         </div>
       </a>
 
-      <!-- تابات التصفح السفلية (Underline Tabs) -->
+      <!-- تابات التصفح السفلية -->
       <nav class="nav-tabs">
         <button class="tab-btn active" onclick="switchTab('tab-overview', this)">الرئيسية</button>
         <button class="tab-btn" onclick="switchTab('tab-academic', this)">بنك المواد</button>
@@ -555,7 +554,7 @@
   <!-- منطقة عرض المحتوى -->
   <main class="main-viewport">
 
-    <!-- 1. تبويب الرئيسية (نظرة عامة) -->
+    <!-- 1. تبويب الرئيسية -->
     <section id="tab-overview" class="tab-section active">
       <div style="margin-bottom: 1.5rem;">
         <h3 style="font-size: 1.4rem; font-weight: 900; color: #ffffff;">نظرة عامة على الخدمات</h3>
@@ -672,7 +671,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // تهيئة فايربيس
     const firebaseConfig = {
       apiKey: "AIzaSyBVMyWsdxknQvNyycyxJXVc5Yr4vLIdjo8",
       authDomain: "yu-media-books.firebaseapp.com",
@@ -685,7 +683,6 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // دالة تبديل التابات
     function switchTab(tabId, btn) {
       document.querySelectorAll('.tab-section').forEach(section => section.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(button => button.classList.remove('active'));
@@ -698,7 +695,6 @@
       }
     }
 
-    // جلب بيانات الكليات من Firebase
     async function fetchFaculties() {
       const container = document.getElementById('faculties-grid');
       container.innerHTML = `
@@ -752,12 +748,10 @@
       }
     }
 
-    // الانتقال لصفحة التخصصات
     function viewMajors(id, name) {
       alert(`سيتم فتح تخصصات (${name}) في الخطوة القادمة.`);
     }
 
-    // تقديم الطلب
     function submitApplication(e) {
       e.preventDefault();
       alert("تم تسجيل طلبك بنجاح في النظام.");
