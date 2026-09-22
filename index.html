@@ -5,35 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>منصة أردننا الأكاديمية | جامعة اليرموك</title>
 
-  
   <link rel="icon" type="image/png" href="favicon.ico.png" />
   <link rel="shortcut icon" type="image/png" href="favicon.ico.png" />
   <link rel="apple-touch-icon" href="favicon.ico.png" />
 
-  
-  <link rel="preconnect" href="https:
-  <link rel="preconnect" href="https:
-  <link href="https:
-  <link rel="stylesheet" href="https:
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     :root {
-      
-      --bg-dark: #0b2e42;   
-      --bg-panel: #113c54;  
-      --bg-card: #154c6a;   
-      
-      --primary-red: #c52222;       
+      --bg-dark: #0b2e42;
+      --bg-panel: #113c54;
+      --bg-card: #154c6a;
+      --primary-red: #c52222;
       --primary-red-hover: #e02828;
-      
-      --accent-gold: #f59f00;       
-      
-      --text-main: #ffffff;         
-      --text-muted: #a6c4d8;        
-      
+      --accent-gold: #f59f00;
+      --text-main: #ffffff;
+      --text-muted: #a6c4d8;
       --border-color: #1f6288;
       --border-hover: #2b84b5;
-      
       --radius-sm: 8px;
       --radius-md: 12px;
     }
@@ -50,7 +42,7 @@
       color: var(--text-main);
       line-height: 1.7;
       min-height: 100vh;
-      -webkit-font-smoothing: antialiased; 
+      -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       background-image: 
         linear-gradient(rgba(31, 98, 136, 0.25) 1px, transparent 1px),
@@ -58,7 +50,6 @@
       background-size: 30px 30px;
     }
 
-    
     .site-header {
       background: rgba(17, 60, 84, 0.95);
       backdrop-filter: blur(8px);
@@ -92,7 +83,9 @@
 
     .brand img {
       height: 40px;
+      max-height: 40px;
       width: auto;
+      object-fit: contain;
     }
 
     .brand-meta {
@@ -148,7 +141,6 @@
     .tab-btn.active { color: var(--text-main); }
     .tab-btn.active::after { width: 100%; }
 
-    
     .hero {
       max-width: 1000px;
       margin: 4.5rem auto 3.5rem;
@@ -235,7 +227,6 @@
       border-color: var(--border-hover);
     }
 
-    
     .main-viewport {
       max-width: 1200px;
       margin: 0 auto 5rem;
@@ -255,7 +246,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    
     .bento-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -320,7 +310,6 @@
       font-size: 0.95rem;
     }
 
-    
     .faculty-item {
       cursor: pointer;
       display: flex;
@@ -357,7 +346,6 @@
       transform: translateX(-5px);
     }
 
-    
     .form-panel {
       max-width: 600px;
       margin: 0 auto;
@@ -390,7 +378,6 @@
 
     .input-control:focus { border-color: var(--primary-red); }
 
-    
     footer {
       background: var(--bg-panel);
       padding: 3.5rem 1.5rem 2rem;
@@ -503,7 +490,7 @@
     }
 
     .dev-badge-clean {
-      color: #ffffff; 
+      color: #ffffff;
       text-decoration: none;
       font-weight: 700;
       background: rgba(255, 255, 255, 0.04);
@@ -530,12 +517,11 @@
 </head>
 <body>
 
-  
   <header class="site-header">
     <div class="top-bar"></div>
     <div class="header-inner">
       <a href="#" class="brand">
-        <img src="whitelogo.png" alt="كتلة أردننا" onerror="this.src='favicon.ico.png'">
+        <img src="logewhite.png" alt="كتلة أردننا" onerror="this.src='favicon.ico.png'" style="height: 40px; max-height: 40px; width: auto; object-fit: contain;">
         <div class="brand-meta">
           <h1>كتلة أردننا</h1>
           <span>جامعة اليرموك</span>
@@ -550,7 +536,6 @@
     </div>
   </header>
 
-  
   <section class="hero">
     <div class="hero-badge">
       <i class="fa-solid fa-building-columns"></i> المنصة الجامعية المعتمدة
@@ -572,10 +557,8 @@
     </div>
   </section>
 
-  
   <main class="main-viewport">
 
-    
     <section id="tab-overview" class="tab-section active">
       <div class="bento-grid">
         <div class="dashboard-card">
@@ -604,19 +587,15 @@
       </div>
     </section>
 
-    
     <section id="tab-academic" class="tab-section">
       <div style="margin-bottom: 1.5rem;">
         <h3 style="font-size: 1.4rem; font-weight: 900;">بنك المواد الجامعية</h3>
         <p style="color: var(--text-muted);">اختر كليتك لاستعراض التخصصات والمقررات</p>
       </div>
 
-      <div id="faculties-grid" class="bento-grid">
-        
-      </div>
+      <div id="faculties-grid" class="bento-grid"></div>
     </section>
 
-    
     <section id="tab-register" class="tab-section">
       <div class="form-panel">
         <div style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
@@ -655,44 +634,39 @@
 
   </main>
 
-  
   <footer>
     <div class="footer-grid">
-      
       
       <div class="footer-brand">
         <h3>كتلة أردننا</h3>
         <p>صوت الطالب وشريك البناء في خدمة المسيرة الأكاديمية والنهوض بالعمل الطلابي والوطني.</p>
         <div class="social-icons">
-          <a href="https:
-          <a href="https:
-          <a href="https:
+          <a href="https://www.instagram.com/our_jordan_yu/" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61581737489708" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://whatsapp.com/channel/0029VbDtR1YCXC3DUzNTHV2l" target="_blank" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
       </div>
 
-      
       <div>
         <h4 class="footer-title">بوابات المنصة</h4>
         <ul class="footer-links">
           <li><a href="#" onclick="document.querySelectorAll('.tab-btn')[0].click()">الرئيسية ونظرة عامة</a></li>
           <li><a href="#" onclick="document.querySelectorAll('.tab-btn')[1].click()">مستودع الكليات</a></li>
           <li><a href="#" onclick="document.querySelectorAll('.tab-btn')[2].click()">طلب الانتساب</a></li>
-          <li><a href="https:
+          <li><a href="https://y0uy5.github.io/ourjordanyu/" target="_blank">بوابة كلية الإعلام</a></li>
         </ul>
       </div>
 
-      
       <div>
         <h4 class="footer-title">خدمات اليرموك</h4>
         <ul class="footer-links">
-          <li><a href="https:
-          <li><a href="https:
-          <li><a href="https:
-          <li><a href="https:
+          <li><a href="https://sis.yu.edu.jo" target="_blank">نظام الطلبة (SIS)</a></li>
+          <li><a href="https://elearning.yu.edu.jo" target="_blank">التعليم الإلكتروني</a></li>
+          <li><a href="https://portal.office.com" target="_blank">البريد الجامعي</a></li>
+          <li><a href="https://teams.microsoft.com" target="_blank">مايكروسوفت تيمز</a></li>
         </ul>
       </div>
 
-      
       <div>
         <h4 class="footer-title">معلومات الصرح</h4>
         <p class="footer-info-item"><i class="fa-solid fa-building-columns" style="color: var(--accent-gold);"></i> جامعة اليرموك</p>
@@ -719,9 +693,8 @@
     </div>
   </footer>
 
-  
-  <script src="https:
-  <script src="https:
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <script>
     const firebaseConfig = {
@@ -801,7 +774,7 @@
     }
 
     function viewMajors(id, name) {
-      alert(`سيتم فتح قائمة التخصصات لـ (${name}) في الخطوة القادمة للبرمجة.`);
+      alert(`سيتم فتح قائمة التخصصات لـ (${name}) في الخطوة القادمة.`);
     }
 
     function submitApplication(e) {
