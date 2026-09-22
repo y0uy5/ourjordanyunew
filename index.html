@@ -335,34 +335,90 @@
 
   </main>
 
+<!-- مكتبات فايربيس (الإصدار المتوافق) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
   <script>
+    // 1. إعدادات فايربيس
+    const firebaseConfig = {
+      apiKey: "AIzaSyBVMyWsdxknQvNyycyxJXVc5Yr4vLIdjo8",
+      authDomain: "yu-media-books.firebaseapp.com",
+      projectId: "yu-media-books",
+      storageBucket: "yu-media-books.firebasestorage.app",
+      messagingSenderId: "567326524295",
+      appId: "1:567326524295:web:b74ff655954ea959b20922"
+    };
+
+    // تهيئة فايربيس
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
     // ----------------------------------------------------
-    // نظام التابات (Tabs Logic) بـ JavaScript نقي
+    // نظام التابات (Tabs Logic)
     // ----------------------------------------------------
     function openTab(tabId, btnElement) {
-      // 1. إخفاء جميع التابات
-      const allTabs = document.querySelectorAll('.tab-content');
-      allTabs.forEach(tab => {
-        tab.classList.remove('active');
-      });
-
-      // 2. إزالة لون التفعيل (active) من جميع الأزرار
-      const allBtns = document.querySelectorAll('.tab-btn');
-      allBtns.forEach(btn => {
-        btn.classList.remove('active');
-      });
-
-      // 3. إظهار التاب المطلوب وتلوين الزر الخاص به
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      
       document.getElementById(tabId).classList.add('active');
       btnElement.classList.add('active');
+
+      // جلب الكليات تلقائياً عند فتح تاب بنك المواد
+      if(tabId === 'bank-tab') {
+        loadFaculties();
+      }
     }
 
-    // دالة وهمية حالياً لزر الإرسال (سيتم برمجتها في مرحلة Firebase)
+    // ----------------------------------------------------
+    // جلب بيانات الكليات من Firestore
+    // ----------------------------------------------------
+    async function loadFaculties() {
+      const container = document.getElementById('faculties-container');
+      container.innerHTML = '<div class="card" style="text-align: center;"><i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--accent-red); margin-bottom:15px;"></i><p>جاري تحميل الكليات...</p></div>';
+
+      try {
+        const snapshot = await db.collection('faculties').orderBy('order', 'asc').get();
+        
+        if (snapshot.empty) {
+          container.innerHTML = '<div class="card" style="text-align: center;"><p style="color: var(--text-muted);">لا توجد كليات مضافة حالياً. سيتم إضافتها من لوحة التحكم.</p></div>';
+          return;
+        }
+
+        let html = '';
+        snapshot.forEach(doc => {
+          const faculty = doc.data();
+          html += `
+            <div class="card" style="border-top: 4px solid var(--primary-navy); cursor: pointer; transition: transform 0.2s;" 
+                 onclick="loadMajors('${doc.id}', '${faculty.name}')" 
+                 onmouseover="this.style.transform='translateY(-5px)'" 
+                 onmouseout="this.style.transform='translateY(0)'">
+              <div style="font-size: 2rem; color: var(--accent-red); margin-bottom: 10px;">
+                <i class="${faculty.icon || 'fa-solid fa-building-columns'}"></i>
+              </div>
+              <h4 style="color: var(--primary-navy); font-size: 1.1rem; margin-bottom: 5px;">${faculty.name}</h4>
+              <p style="color: var(--text-muted); font-size: 0.85rem;">انقر لاستعراض التخصصات</p>
+            </div>
+          `;
+        });
+        
+        container.innerHTML = html;
+      } catch (error) {
+        console.error("Firestore Error: ", error);
+        container.innerHTML = `<div class="card" style="text-align: center; color: red;"><p>حدث خطأ أثناء الاتصال بقاعدة البيانات. (تأكد من صلاحيات فايربيس)</p></div>`;
+      }
+    }
+
+    // دالة فتح تخصصات الكلية
+    function loadMajors(facultyId, facultyName) {
+      alert("اخترت: " + facultyName + "! في الخطوة القادمة سنجلب تخصصات هذه الكلية بناءً على معرفها.");
+    }
+
+    // إرسال طلب الانتساب
     function submitJoinRequest(event) {
       event.preventDefault();
-      alert("تم تصميم الواجهة بنجاح! سيتم تفعيل الإرسال لقاعدة البيانات في المرحلة القادمة.");
+      alert("تم استلام طلبك مبدئياً! سيتم ربطه بقاعدة البيانات قريباً.");
     }
   </script>
-
 </body>
 </html>
